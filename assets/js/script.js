@@ -1,29 +1,37 @@
 // Variables
 
 var today = dayjs();
+var currentHour = dayjs().hour()
 $('#currentDay').text(today.format('dddd, MMMM D, YYYY'));
-
-//document.querySelector(".saveBtn").addEventListener("click", localStorage);
-
-//localStorage.setItem(time, value)
-
-//var scheduler = [];
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
 $(document).ready(function () {
-
-  $('.saveBtn').on('click', function() {
-    var textInfo = $(this).siblings(".description").val(); 
-    localStorage.setItem('textInfo', textInfo)
+  $('textarea').each(function (event) {
+    var timeBlock = ($(this).parent('div').attr('id'))
+    //var img = $('<img>')
+    //img.attr('src', 'https://www.allaboutbirds.org/guide/assets/photo///304512481-480px.jpg')
+   // $('#' + timeBlock).append(img)
+    var text = localStorage.getItem(timeBlock)
+    $(this).val(text)
+    if (timeBlock == currentHour) {
+      $(this).addClass('present')
+    } else if (timeBlock < currentHour) {
+      $(this).addClass('past')
+    } else {
+      $(this).addClass('future')
+    }
+  })
+  $('.saveBtn').on('click', function () {
+    var text = $(this).siblings('textarea').val()
+    console.log(text)
+    var timeBlock = $(this).parent('div').attr('id')
+    localStorage.setItem(timeBlock, text)
+  })
 })
-// Insert all relevant function names 
-});
 
-$(function () {
- 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -42,5 +50,4 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
 
