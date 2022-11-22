@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 16px;
+}
+
+h1.display-3 {
+  font-weight: 500;
 }
 
 textarea {
@@ -28,6 +34,7 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  font-weight: 500;
 }
 
 .past {
